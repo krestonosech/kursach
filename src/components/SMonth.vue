@@ -51,9 +51,11 @@ export default {
     },
     next() {
       this.$store.dispatch('setMontherNumberPlus');
+      this.$router.push('/main');
     },
     prev() {
       this.$store.dispatch('setMontherNumberMinus');
+      this.$router.push('/main');
     },
     getMonth() {
       if (this.$store.state.monther.number === 0) {

@@ -3,22 +3,22 @@
     <h1 class="h1"> 
       {{ this.start.getDate() }} - {{ this.end.getDate() }}, 
       {{ this.monthName }}</h1>
-    <router-link to="/" 
+    <router-link to="/main" 
     @click="prevMonth" 
     :class="{ disabled: this.$store.state.monther.number-1 < 1 }">
       <span class="mdi mdi-arrow-collapse-left"></span>
     </router-link>
-    <router-link to="/" 
+    <router-link to="/main" 
     @click="prev" 
     :class="{ disabled: weekNumber === 1 }">
       <span class="mdi mdi-arrow-left"></span>
     </router-link>
-    <router-link to="/" 
+    <router-link to="/main" 
     @click="next" 
     :class="{ disabled: weekNumber === 5 }">
       <span class="mdi mdi-arrow-right"></span>
     </router-link>
-    <router-link to="/" 
+    <router-link to="/main" 
     @click="nextMonth" 
     :class="{ disabled: this.$store.state.monther.number-1 > 12 }">
       <span class="mdi mdi-arrow-collapse-right"></span>
@@ -92,11 +92,11 @@ export default {
         this.start = firstDayOfNextWeek;
         this.end = new Date(firstDayOfNextWeek.getFullYear(), firstDayOfNextWeek.getMonth(), firstDayOfNextWeek.getDate() + 6);
       }
+      this.$router.push('/main');
     },
     prev() {
       this.weekNumber--;
 
-      // Вычисляем начало предыдущей недели
       const firstDayOfPreviousWeek = new Date(this.start.getFullYear(), this.start.getMonth(), this.start.getDate() - this.DAYS_IN_WEEK);
       if (this.weekNumber === 1) {
         this.start = this.firstDaiInMonth;
@@ -105,6 +105,7 @@ export default {
         this.start = firstDayOfPreviousWeek;
         this.end = new Date(firstDayOfPreviousWeek.getFullYear(), firstDayOfPreviousWeek.getMonth(), firstDayOfPreviousWeek.getDate() + this.DAYS_IN_WEEK - 1);
       }
+      this.$router.push('/main');
     }
   },
   created() {
@@ -112,11 +113,9 @@ export default {
     const dayOfWeek = firstDayOfMonth.getDay();
     const daysInMonth = new Date(this.$store.state.monther.year, this.$store.state.monther.number, 0).getDate();
 
-    // Calculate the start and end dates of the first week
     this.start = new Date(this.$store.state.monther.year, this.$store.state.monther.number - 1, 1);
     this.end = new Date(this.$store.state.monther.year, this.$store.state.monther.number - 1, 7);
 
-    // Calculate the start and end dates of the second week
     if (dayOfWeek === 1 && this.weekNumber === 1) {
       this.start = new Date(this.$store.state.monther.year, this.$store.state.monther.number - 1, 1);
       this.end = new Date(this.$store.state.monther.year, this.$store.state.monther.number - 1, 6);

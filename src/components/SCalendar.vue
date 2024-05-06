@@ -15,7 +15,7 @@
 <!--         <p class="newMeet">Создать</p> -->
         <div class="month">
           <ul class="table__settings">
-            <router-link to="/" 
+            <router-link to="/main" 
             class="router-link"
             @click="day"
             >
@@ -24,7 +24,7 @@
               :class="{ 'activee': this.$store.state.day }"
               >День</li>
             </router-link>
-            <router-link to="/" 
+            <router-link to="/main" 
             class="router-link"
             @click="fullWeek"
             >
@@ -32,7 +32,7 @@
               :class="{ 'activee': this.$store.state.fullWeek }"
               >Неделя</li>
             </router-link>
-            <router-link to="/" 
+            <router-link to="/main" 
             class="router-link"
             @click="month"
             >
@@ -128,9 +128,9 @@ const isDark = ref(false);
   margin: 10px 10px 10px 0;
   float: right;
 }
-::v-deep .VCalendar {
+/* ::v-deep .VCalendar {
   
-}
+} */
 
 th {
   border: solid black 2px;
