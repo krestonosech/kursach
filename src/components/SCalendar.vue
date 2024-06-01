@@ -56,7 +56,7 @@
               <div v-for="(item, index) in notificationTextInvitedEvents" :key="index" class="items__notification">
                 <div v-for="arrayItem in Store.state.usersList" :key="arrayItem">
                   <div v-if="arrayItem.id == item.author_id">
-                    <h4>Встреча {{ index + 1 }}</h4>
+                    <h4>Мероприятие {{ index + 1 }}</h4>
                     <div>Создатель: {{ arrayItem.username }}</div>
                     <div>Описание: {{ item.name }}</div>
                   </div>
@@ -67,9 +67,10 @@
               <div v-for="(item, index) in notificationTextMyEvents" :key="index" class="items__notification">
                 <div v-for="arrayItem in ListOFUsers" :key="arrayItem">
                   <div v-if="arrayItem.id == item.author_id">
-                    <h4>Встреча {{ index + 1 }}</h4>
+                    <h4>Мероприятие {{ index + 1 }}</h4>
                     <div>Создатель: {{ arrayItem.username }}</div>
                     <div>Описание: {{ item.name }}</div>
+                    <div>Дата: {{ item.event_date }}</div>
                   </div>
                 </div>
               </div>
@@ -102,12 +103,17 @@
               >
               </v-date-picker>
               <button class="modal__content__elements" @click="formattedMeetDate">Подтвердить дату</button>
+              <p>Выберите важность встречи:</p>
+              <select v-model="meetStatus">
+                <option value="red">Очень важная</option>
+                <option value="orange">Среднаяя</option>
+                <option value="green">Посредственная</option>
+              </select>
               <button class="modal__content__elements" @click="createMeet" :disabled="!meetDescription || !meetDateResult || !anotherUserId">Создать встречу</button>
             </div>
           </div>
         </div>
     </div>
-
 </template>
 
 <script setup lang="ts">
@@ -133,6 +139,7 @@ const meetDescription = ref<string>()
 const meetDate = ref(undefined)
 const meetDateResult = ref()
 const meetTime = ref('')
+const meetStatus = ref()
 
 /* getUsersList() */
 
@@ -151,6 +158,7 @@ function handleOutsideClick (event: any) {
 async function createMeet () {
   try {
     const data = {
+      status: meetStatus.value,
       author_id: Number(localStorage.getItem('userId')),
       invited_id: anotherUserId.value,
       name: meetDescription.value,
@@ -244,7 +252,7 @@ button {
   margin-bottom: 30px;
 }
 .modal__content__elements {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
   .modal__content {
     display: flex;

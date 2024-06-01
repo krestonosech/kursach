@@ -7,7 +7,7 @@
                 <input type="text" placeholder="Почта" v-model="login">
                 <h4>Введите пароль</h4>
                 <input type="password" placeholder="Пароль" v-model="password">
-                <p v-if="errors.passwordMismatch" class="error">Неправильный логил или пароль</p>
+                <p v-if="errors.passwordMismatch" class="error">Неправильный логин или пароль</p>
                 <p v-if="errors.emailMismatch" class="error">Неправильная почта</p>
                 <button class="login__authorization__mybutton" @click="authorizateUser">Подтвердить</button>
                 <button class="login__authorization__mybutton" @click="routeToAuthorization">Зарегестрироваться</button>

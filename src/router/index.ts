@@ -20,7 +20,7 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: '/authorization',
     name: 'authorization',
-    component: () => import('../pages/SAuthorization.vue'),
+    component: () => import('../pages/SRegistration.vue'),
     children: []
   }
 ]
@@ -28,15 +28,6 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes
-})
-
-router.beforeEach((to, from, next) => {
-  const isLoggedIn = !!localStorage.getItem('accessToken')
-  if (to.path !== '/login' && !isLoggedIn) {
-    next('/login')
-  } else {
-    next()
-  }
 })
 
 export default router

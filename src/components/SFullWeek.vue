@@ -34,7 +34,7 @@
                   <div v-for="(item, index) in myEventsList.filter(event => event.event_date === getDatee(row, col).date)" :key="index" class="meet">
                     <div v-for="arrayItem in Store.state.usersList" :key="arrayItem">
                       <div v-if="arrayItem.id == item.author_id">
-                        <h4>Встреча {{ index + 1 }}</h4>
+                        <h4 :style="{backgroundColor: item.status}">Мероприятие {{ index + 1 }}</h4>
                         <div>Создатель: {{ arrayItem.username }}</div>
                         <div>Описание: {{ item.name }}</div>
                       </div>
@@ -50,7 +50,7 @@
                   <div v-for="(item, index) in usersEventsList.filter(event => event.event_date === getDatee(row, col).date)" :key="index" class="meet">
                     <div v-for="arrayItem in Store.state.usersList" :key="arrayItem">
                       <div v-if="arrayItem.id == item.author_id">
-                        <h4>Встреча {{ index + 1 }}</h4>
+                        <h4 :style="{backgroundColor: item.status}">Мероприятие {{ index + 1 }}</h4>
                         <div>Создатель: {{ arrayItem.username }}</div>
                         <div>Описание: {{ item.name }}</div>
                       </div>

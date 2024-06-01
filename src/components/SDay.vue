@@ -9,11 +9,11 @@
       <div :class="!Store.state.asideOpenClose ? 'day' : 'day__with__notifications'">
         <div class="current__date">
           <p>{{ today }}</p>
-          <div v-for="item in myEventsList" :key="item">
+          <div v-for="(item, index) in myEventsList" :key="index">
             <div v-if="item && item.event_date === today">
               <div v-for="arrayItem in Store.state.usersList" :key="arrayItem">
                 <div v-if="arrayItem.id == item.author_id">
-                  <h4>Встреча {{ index + 1 }}</h4>
+                  <h4 :style="{backgroundColor: item.status}">Сегодняшние встречи</h4>
                   <div>Создатель: {{ arrayItem.username }}</div>
                   <div>Описание: {{ item.name }}</div>
                 </div>
@@ -32,7 +32,7 @@
             <div v-if="item && item.event_date === today">
               <div v-for="arrayItem in Store.state.usersList" :key="arrayItem">
                 <div v-if="arrayItem.id == item.author_id">
-                  <h4>Встреча {{ index + 1 }}</h4>
+                  <h4 :style="{backgroundColor: item.status}">Мероприятие {{ index + 1 }}</h4>
                   <div>Создатель: {{ arrayItem.username }}</div>
                   <div>Описание: {{ item.name }}</div>
                 </div>

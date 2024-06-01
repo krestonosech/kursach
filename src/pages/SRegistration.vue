@@ -3,7 +3,7 @@
         <div class="auth">
             <h1>Регистрация</h1>
             <div class="main">
-                <h4>Введите логи</h4>
+                <h4>Введите логин</h4>
                 <input type="text" placeholder="Почта" v-model="login">
                 <h4>Введите почту</h4>
                 <input type="text" placeholder="Почта" v-model="email">
